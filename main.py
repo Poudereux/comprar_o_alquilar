@@ -2,6 +2,7 @@ from entrada import pedir_numero
 from opciones import Compra, Alquiler
 from comparador import año_de_cruce
 from graficas import grafica_costes, grafica_patrimonio
+from ficheros import guardar_escenario, cargar_escenarios
 
 
 def crear_alquiler(compra):
@@ -32,7 +33,9 @@ def mostrar_menu():
     print("3. Ver resultado")
     print("4. Gráfica: comprar vs alquilar")
     print("5. Gráfica: valor del piso vs deuda")
-    print("6. Salir")
+    print("6. Guardar escenario")
+    print("7. Cargar escenarios")   
+    print("8. Salir")
 
 
 def main():
@@ -70,10 +73,27 @@ def main():
             else:
                 grafica_patrimonio(compra, 30)
         elif opcion == "6":
+            if compra is None or alquiler is None:
+                print("Primero introduce los datos (opciones 1 y 2)")
+            else:
+                nombre = input("Nombre del escenario: ")
+                guardar_escenario(nombre, compra, alquiler)
+                print(f"Escenario '{nombre}' guardado")
+        elif opcion == "7":
+            escenarios = cargar_escenarios()
+            if escenarios:
+                print("Escenarios guardados:", ", ".join(escenarios.keys()))
+                nombre = input("¿Cuál quieres cargar? ")
+                if nombre in escenarios:
+                    compra, alquiler = escenarios[nombre]
+                    print(f"Escenario '{nombre}' cargado")
+                else:
+                    print("No existe ese escenario")
+        elif opcion == "8":
             print("¡Hasta luego!")
             break
         else:
-            print("Opción no válida, elige del 1 al 6")
+            print("Opción no válida, elige del 1 al 8")
 
 
 main()
