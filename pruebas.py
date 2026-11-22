@@ -1,7 +1,7 @@
 from finanzas import cuota_mensual, deuda_pendiente
 from opciones import Compra, Alquiler
 from comparador import año_de_cruce
-from graficas import grafica_costes
+from graficas import grafica_costes, grafica_patrimonio
 
 print(f"La cuota es {cuota_mensual(150000, 0.04, 25):.2f} €")
 print(f"Deuda pendiente: {deuda_pendiente(150000, 0.04, 25, 120):.2f} €")
@@ -24,3 +24,4 @@ print(f"Alquilar 10 años: {alquiler.coste_total(10):.2f} €")
 print(f"Comprar compensa a partir del año {año_de_cruce(piso, alquiler)}")
 
 grafica_costes(piso, alquiler, 30)
+grafica_patrimonio(piso, 30)
