@@ -4,11 +4,13 @@ from comparador import año_de_cruce
 from graficas import grafica_costes, grafica_patrimonio
 
 
-def crear_alquiler():
+def crear_alquiler(compra):
     print("\n--- DATOS DEL ALQUILER ---")
     mensual = pedir_numero("Alquiler mensual (€): ")
     subida = pedir_numero("Subida anual del alquiler (%): ") / 100
-    return Alquiler(mensual, subida)
+    rentabilidad = pedir_numero("Rentabilidad si inviertes la entrada (%): ") / 100
+    capital = compra.entrada + compra.precio * compra.gastos_compra
+    return Alquiler(mensual, subida, capital, rentabilidad)
 
 
 def crear_compra():
@@ -44,7 +46,10 @@ def main():
         if opcion == "1":
             compra = crear_compra()
         elif opcion == "2":
-            alquiler = crear_alquiler()
+            if compra is None:
+                print("Primero introduce los datos de la compra (opción 1)")
+            else:
+                alquiler = crear_alquiler(compra)
         elif opcion == "3":
             if compra is None or alquiler is None:
                 print("Primero introduce los datos de la compra y del alquiler (opciones 1 y 2)")

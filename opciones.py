@@ -28,18 +28,20 @@ class Compra:
         return pagado - patrimonio
 
 class Alquiler:
-    def __init__(self, alquiler_mensual, subida_anual):
+    def __init__(self, alquiler_mensual, subida_anual, capital_invertido, rentabilidad):
         self.alquiler_mensual = alquiler_mensual
         self.subida_anual = subida_anual
+        self.capital_invertido = capital_invertido
+        self.rentabilidad = rentabilidad
 
     def renta_del_año(self, año):
         return self.alquiler_mensual * 12 * (1 + self.subida_anual) ** (año - 1)
+
+    def ganancia_inversion(self, años):
+        return self.capital_invertido * ((1 + self.rentabilidad) ** años - 1)
 
     def coste_total(self, años):
         total = 0
         for año in range(1, años + 1):
             total = total + self.renta_del_año(año)
-        return total
-
-    
-    
+        return total - self.ganancia_inversion(años)

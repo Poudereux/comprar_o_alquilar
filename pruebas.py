@@ -10,7 +10,7 @@ piso = Compra(250000, 50000, 0.03, 30, 0.10, 1500, 0.02)
 print(f"Cuota: {piso.cuota():.2f} €")
 print(f"Valor del piso en 10 años: {piso.valor_piso(10):.2f} €")
 
-alquiler = Alquiler(1000, 0.03)
+alquiler = Alquiler(1000, 0.03, 75000, 0.04)
 print(f"Año 1: {alquiler.renta_del_año(1):.2f} €")
 print(f"Año 2: {alquiler.renta_del_año(2):.2f} €")
 print(f"Alquiler 2 años: {alquiler.coste_total(2):.2f} €")
