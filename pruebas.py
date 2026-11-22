@@ -23,5 +23,10 @@ print(f"Alquilar 10 años: {alquiler.coste_total(10):.2f} €")
 
 print(f"Comprar compensa a partir del año {año_de_cruce(piso, alquiler)}")
 
-grafica_costes(piso, alquiler, 30)
-grafica_patrimonio(piso, 30)
+#grafica_costes(piso, alquiler, 30)
+#grafica_patrimonio(piso, 30)
+
+from entrada import pedir_numero
+precio = pedir_numero("Precio del piso: ")
+print(f"Has escrito {precio}")
+
