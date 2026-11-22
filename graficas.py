@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from comparador import año_de_cruce
 
 def grafica_costes(compra, alquiler, años):
     lista_años = []
@@ -12,6 +13,12 @@ def grafica_costes(compra, alquiler, años):
 
     plt.plot(lista_años, costes_compra, label="Comprar")
     plt.plot(lista_años, costes_alquiler, label="Alquilar")
+
+    cruce = año_de_cruce(compra, alquiler)
+    if cruce is not None:
+        plt.axvline(cruce, color="gray", linestyle="--")
+        plt.text(cruce, max(costes_alquiler) / 2, f" Compensa comprar desde el año {cruce}")
+
     plt.xlabel("Años")
     plt.ylabel("Coste acumulado (€)")
     plt.title("¿Comprar o alquilar?")
